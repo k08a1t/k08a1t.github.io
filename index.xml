@@ -8,17 +8,6 @@
     <language>en-us</language>
     <lastBuildDate>Sat, 22 Oct 2022 21:58:40 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>About</title>
-      <link>/links/</link>
-      <pubDate>Sun, 23 Oct 2022 12:18:35 +0900</pubDate>
-      
-      <guid>/links/</guid>
-      <description> </description>
-      <content>&lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;
-</content>
-    </item>
-    
-    <item>
       <title>k08a1t</title>
       <link>/about/</link>
       <pubDate>Sun, 23 Oct 2022 12:18:35 +0900</pubDate>
@@ -27,7 +16,7 @@
       <description>Name Kobayashi Yukiya
 School Information Science College
 Field of interest Malware Analysis, Log Analysis, Penetration Testing, Reversing&amp;hellip;
-hobby Reading mystery novels, Watching Anime, Playing the piano, baking&amp;hellip;</description>
+Qualifications  Information Technology Passport Examination Fundamental Information Technology Engineer Examination Applied Informationi Technology Engineer Examination JDLA Deep Learning for GENERAL 2020#2  Hobby Reading mystery novels, Watching Anime, Playing the piano, baking&amp;hellip;</description>
       <content>
   &lt;img src=&#34;/img/icon.jpg&#34;  alt=&#34;icon&#34;  class=&#34;left&#34;  style=&#34;border-radius: 50px;&#34;  /&gt;
 
@@ -38,8 +27,28 @@ hobby Reading mystery novels, Watching Anime, Playing the piano, baking&amp;hell
 &lt;p&gt;Information Science College&lt;/p&gt;
 &lt;h1 id=&#34;field-of-interest&#34;&gt;Field of interest&lt;/h1&gt;
 &lt;p&gt;Malware Analysis, Log Analysis, Penetration Testing, Reversing&amp;hellip;&lt;/p&gt;
-&lt;h1 id=&#34;hobby&#34;&gt;hobby&lt;/h1&gt;
+&lt;h1 id=&#34;qualifications&#34;&gt;Qualifications&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Information Technology Passport Examination&lt;/li&gt;
+&lt;li&gt;Fundamental Information Technology Engineer Examination&lt;/li&gt;
+&lt;li&gt;Applied Informationi Technology Engineer Examination&lt;/li&gt;
+&lt;li&gt;JDLA Deep Learning for GENERAL 2020#2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;hobby&#34;&gt;Hobby&lt;/h1&gt;
 &lt;p&gt;Reading mystery novels, Watching Anime, Playing the piano, baking&amp;hellip;&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Links</title>
+      <link>/links/</link>
+      <pubDate>Sun, 23 Oct 2022 12:18:35 +0900</pubDate>
+      
+      <guid>/links/</guid>
+      <description>Twitter GitHub HatenaBlog </description>
+      <content>&lt;h1 id=&#34;twitterhttpstwittercomkobalt081&#34;&gt;&lt;a href=&#34;https://twitter.com/kobalt081&#34;&gt;Twitter&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id=&#34;githubhttpsgithubcomk08a1t&#34;&gt;&lt;a href=&#34;https://github.com/k08a1t&#34;&gt;GitHub&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id=&#34;hatenabloghttpskobaltloghatenablogcom&#34;&gt;&lt;a href=&#34;https://kobaltlog.hatenablog.com/&#34;&gt;HatenaBlog&lt;/a&gt;&lt;/h1&gt;
 </content>
     </item>
     
