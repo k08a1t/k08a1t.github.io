@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Your site title</title>
+    <link>/</link>
+    <description>Recent content on Your site title</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 22 Oct 2022 21:58:40 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>/links/</link>
+      <pubDate>Sun, 23 Oct 2022 12:18:35 +0900</pubDate>
+      
+      <guid>/links/</guid>
+      <description> </description>
+      <content>&lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>k08a1t</title>
+      <link>/about/</link>
+      <pubDate>Sun, 23 Oct 2022 12:18:35 +0900</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Name Kobayashi Yukiya
+School Information Science College
+Field of interest Malware Analysis, Log Analysis, Penetration Testing, Reversing&amp;hellip;
+hobby Reading mystery novels, Watching Anime, Playing the piano, baking&amp;hellip;</description>
+      <content>
+  &lt;img src=&#34;/img/icon.jpg&#34;  alt=&#34;icon&#34;  class=&#34;left&#34;  style=&#34;border-radius: 50px;&#34;  /&gt;
+
+
+&lt;h1 id=&#34;name&#34;&gt;Name&lt;/h1&gt;
+&lt;p&gt;Kobayashi Yukiya&lt;/p&gt;
+&lt;h1 id=&#34;school&#34;&gt;School&lt;/h1&gt;
+&lt;p&gt;Information Science College&lt;/p&gt;
+&lt;h1 id=&#34;field-of-interest&#34;&gt;Field of interest&lt;/h1&gt;
+&lt;p&gt;Malware Analysis, Log Analysis, Penetration Testing, Reversing&amp;hellip;&lt;/p&gt;
+&lt;h1 id=&#34;hobby&#34;&gt;hobby&lt;/h1&gt;
+&lt;p&gt;Reading mystery novels, Watching Anime, Playing the piano, baking&amp;hellip;&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Hello</title>
+      <link>/posts/hello/</link>
+      <pubDate>Sat, 22 Oct 2022 21:58:40 +0900</pubDate>
+      
+      <guid>/posts/hello/</guid>
+      <description>hello!</description>
+      <content>&lt;p&gt;hello!&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>
