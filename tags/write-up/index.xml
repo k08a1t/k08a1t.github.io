@@ -6,111 +6,11 @@
     <description>Recent content in Write-up on kobalt log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="/tags/write-up/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>CpawCTF Write-up Q23「またやらかした！」</title>
-      <link>/posts/cpaw_write-up_q23/</link>
-      <pubDate>Sun, 02 Oct 2022 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/cpaw_write-up_q23/</guid>
-      <description>またprintf()をし忘れたプログラムが見つかった。
-とある暗号を解くプログラムらしい&amp;hellip;　問題ファイル：rev200
- 実行権限を与えて、fileコマンドで実行ファイルの形式を確認するとELFであることが分かる
-$ file rev200 rev200: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.24, BuildID[sha1]=e87140105d6b5c8ea9b0193380ab3b79bfdcd85b, not stripped ghidraでデコンパイルするとmain関数のでコンパイル結果は以下のようになっている
-undefined4 main(void) { int iVar1; uint *puVar2; int local_84; uint local_7c [14]; uint local_44 [14]; local_7c[0] = 0x7a; local_7c[1] = 0x69; local_7c[2] = 0x78; local_7c[3] = 0x6e; local_7c[4] = 0x62; local_7c[5] = 0x6f; local_7c[6] = 0x7c; local_7c[7] = 0x6b; local_7c[8] = 0x77; local_7c[9] = 0x78; local_7c[10] = 0x74; local_7c[11] = 0x38; local_7c[12] = 0x38; local_7c[13] = 100; puVar2 = local_44; for (iVar1 = 0xe; iVar1 !</description>
-      <content>&lt;blockquote&gt;
-&lt;p&gt;またprintf()をし忘れたプログラムが見つかった。&lt;br&gt;
-とある暗号を解くプログラムらしい&amp;hellip;　&lt;br&gt;
-問題ファイル：rev200&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;実行権限を与えて、fileコマンドで実行ファイルの形式を確認するとELFであることが分かる&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ file rev200
-rev200: ELF 32-bit LSB executable, Intel 80386, version &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;SYSV&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, dynamically linked, 
-interpreter /lib/ld-linux.so.2, &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; GNU/Linux 2.6.24, BuildID&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;sha1&lt;span style=&#34;color:#f92672&#34;&gt;]=&lt;/span&gt;e87140105d6b5c8ea9b0193380ab3b79bfdcd85b, not stripped
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;ghidraでデコンパイルするとmain関数のでコンパイル結果は以下のようになっている&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;undefined4 &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt;)
- 
-{
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; iVar1;
-  uint &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;puVar2;
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; local_84;
-  uint local_7c [&lt;span style=&#34;color:#ae81ff&#34;&gt;14&lt;/span&gt;];
-  uint local_44 [&lt;span style=&#34;color:#ae81ff&#34;&gt;14&lt;/span&gt;];
-  
-  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x7a&lt;/span&gt;;
-  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x69&lt;/span&gt;;
-  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x78&lt;/span&gt;;
-  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x6e&lt;/span&gt;;
-  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x62&lt;/span&gt;;
-  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x6f&lt;/span&gt;;
-  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x7c&lt;/span&gt;;
-  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x6b&lt;/span&gt;;
-  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x77&lt;/span&gt;;
-  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x78&lt;/span&gt;;
-  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x74&lt;/span&gt;;
-  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x38&lt;/span&gt;;
-  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x38&lt;/span&gt;;
-  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;13&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;;
-  puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; local_44;
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0xe&lt;/span&gt;; iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
-    &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
-    puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
-  }
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (local_84 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; local_84 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0xe&lt;/span&gt;; local_84 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; local_84 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
-    local_44[local_84] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; local_7c[local_84] &lt;span style=&#34;color:#f92672&#34;&gt;^&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x19&lt;/span&gt;;
-  }
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
-}
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;配列local_7cに格納された16進数と0x19の排他的論理和を配列local_44に格納していることが分かるので、
-これを出力するように書き換える。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt;)
- 
-{
- &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; iVar1;
- &lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;puVar2;
- &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; local_84;
- &lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; local_7c [&lt;span style=&#34;color:#ae81ff&#34;&gt;14&lt;/span&gt;];
- &lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; local_44 [&lt;span style=&#34;color:#ae81ff&#34;&gt;14&lt;/span&gt;];
-
- local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x7a&lt;/span&gt;;
- local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x69&lt;/span&gt;;
- local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x78&lt;/span&gt;;
- local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x6e&lt;/span&gt;;
- local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x62&lt;/span&gt;;
- local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x6f&lt;/span&gt;;
- local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x7c&lt;/span&gt;;
- local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x6b&lt;/span&gt;;
- local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x77&lt;/span&gt;;
- local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x78&lt;/span&gt;;
- local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x74&lt;/span&gt;;
- local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x38&lt;/span&gt;;
- local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x38&lt;/span&gt;;
- local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;13&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;;
- puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; local_44;
- &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0xe&lt;/span&gt;; iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
-   &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
-   puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
- }
- &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (local_84 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; local_84 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0xe&lt;/span&gt;; local_84 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; local_84 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
-   local_44[local_84] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; local_7c[local_84] &lt;span style=&#34;color:#f92672&#34;&gt;^&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x19&lt;/span&gt;;
- }
- 
- &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;14&lt;/span&gt;;i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
-   printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%c&amp;#34;&lt;/span&gt;,local_44[i]);
- }
- &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;これをC言語でコンパイルし、実行するとフラグを出力できる。&lt;/p&gt;
-&lt;p&gt;解答：&lt;strong&gt;cpaw{vernam!!}&lt;/strong&gt;&lt;/p&gt;
-</content>
-    </item>
-    
+    <lastBuildDate>Mon, 24 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="/tags/write-up/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CpawCTF Write-up Q21「reversing easy!」</title>
       <link>/posts/cpaw_write-up_q21/</link>
-      <pubDate>Sat, 01 Oct 2022 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 24 Oct 2022 00:00:00 +0000</pubDate>
       
       <guid>/posts/cpaw_write-up_q21/</guid>
       <description>フラグを出す実行ファイルがあるのだが、プログラム(elfファイル)作成者が出力する関数を下記忘れてしまったらしい&amp;hellip;
@@ -237,9 +137,109 @@ int main &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;int esi, int ed
     </item>
     
     <item>
+      <title>CpawCTF Write-up Q23「またやらかした！」</title>
+      <link>/posts/cpaw_write-up_q23/</link>
+      <pubDate>Mon, 24 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/cpaw_write-up_q23/</guid>
+      <description>またprintf()をし忘れたプログラムが見つかった。
+とある暗号を解くプログラムらしい&amp;hellip;　問題ファイル：rev200
+ 実行権限を与えて、fileコマンドで実行ファイルの形式を確認するとELFであることが分かる
+$ file rev200 rev200: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.24, BuildID[sha1]=e87140105d6b5c8ea9b0193380ab3b79bfdcd85b, not stripped ghidraでデコンパイルするとmain関数のでコンパイル結果は以下のようになっている
+undefined4 main(void) { int iVar1; uint *puVar2; int local_84; uint local_7c [14]; uint local_44 [14]; local_7c[0] = 0x7a; local_7c[1] = 0x69; local_7c[2] = 0x78; local_7c[3] = 0x6e; local_7c[4] = 0x62; local_7c[5] = 0x6f; local_7c[6] = 0x7c; local_7c[7] = 0x6b; local_7c[8] = 0x77; local_7c[9] = 0x78; local_7c[10] = 0x74; local_7c[11] = 0x38; local_7c[12] = 0x38; local_7c[13] = 100; puVar2 = local_44; for (iVar1 = 0xe; iVar1 !</description>
+      <content>&lt;blockquote&gt;
+&lt;p&gt;またprintf()をし忘れたプログラムが見つかった。&lt;br&gt;
+とある暗号を解くプログラムらしい&amp;hellip;　&lt;br&gt;
+問題ファイル：rev200&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;実行権限を与えて、fileコマンドで実行ファイルの形式を確認するとELFであることが分かる&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ file rev200
+rev200: ELF 32-bit LSB executable, Intel 80386, version &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;SYSV&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, dynamically linked, 
+interpreter /lib/ld-linux.so.2, &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; GNU/Linux 2.6.24, BuildID&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;sha1&lt;span style=&#34;color:#f92672&#34;&gt;]=&lt;/span&gt;e87140105d6b5c8ea9b0193380ab3b79bfdcd85b, not stripped
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;ghidraでデコンパイルするとmain関数のでコンパイル結果は以下のようになっている&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;undefined4 &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt;)
+ 
+{
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; iVar1;
+  uint &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;puVar2;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; local_84;
+  uint local_7c [&lt;span style=&#34;color:#ae81ff&#34;&gt;14&lt;/span&gt;];
+  uint local_44 [&lt;span style=&#34;color:#ae81ff&#34;&gt;14&lt;/span&gt;];
+  
+  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x7a&lt;/span&gt;;
+  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x69&lt;/span&gt;;
+  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x78&lt;/span&gt;;
+  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x6e&lt;/span&gt;;
+  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x62&lt;/span&gt;;
+  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x6f&lt;/span&gt;;
+  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x7c&lt;/span&gt;;
+  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x6b&lt;/span&gt;;
+  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x77&lt;/span&gt;;
+  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x78&lt;/span&gt;;
+  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x74&lt;/span&gt;;
+  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x38&lt;/span&gt;;
+  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x38&lt;/span&gt;;
+  local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;13&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;;
+  puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; local_44;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0xe&lt;/span&gt;; iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
+    &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+    puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+  }
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (local_84 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; local_84 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0xe&lt;/span&gt;; local_84 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; local_84 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
+    local_44[local_84] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; local_7c[local_84] &lt;span style=&#34;color:#f92672&#34;&gt;^&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x19&lt;/span&gt;;
+  }
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;配列local_7cに格納された16進数と0x19の排他的論理和を配列local_44に格納していることが分かるので、
+これを出力するように書き換える。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt;)
+ 
+{
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; iVar1;
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;puVar2;
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; local_84;
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; local_7c [&lt;span style=&#34;color:#ae81ff&#34;&gt;14&lt;/span&gt;];
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;unsigned&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; local_44 [&lt;span style=&#34;color:#ae81ff&#34;&gt;14&lt;/span&gt;];
+
+ local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x7a&lt;/span&gt;;
+ local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x69&lt;/span&gt;;
+ local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x78&lt;/span&gt;;
+ local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x6e&lt;/span&gt;;
+ local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x62&lt;/span&gt;;
+ local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x6f&lt;/span&gt;;
+ local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x7c&lt;/span&gt;;
+ local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x6b&lt;/span&gt;;
+ local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x77&lt;/span&gt;;
+ local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x78&lt;/span&gt;;
+ local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x74&lt;/span&gt;;
+ local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x38&lt;/span&gt;;
+ local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x38&lt;/span&gt;;
+ local_7c[&lt;span style=&#34;color:#ae81ff&#34;&gt;13&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;;
+ puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; local_44;
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0xe&lt;/span&gt;; iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; iVar1 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
+   &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+   puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; puVar2 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+ }
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (local_84 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; local_84 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0xe&lt;/span&gt;; local_84 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; local_84 &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
+   local_44[local_84] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; local_7c[local_84] &lt;span style=&#34;color:#f92672&#34;&gt;^&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0x19&lt;/span&gt;;
+ }
+ 
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;14&lt;/span&gt;;i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
+   printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%c&amp;#34;&lt;/span&gt;,local_44[i]);
+ }
+ &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;これをC言語でコンパイルし、実行するとフラグを出力できる。&lt;/p&gt;
+&lt;p&gt;解答：&lt;strong&gt;cpaw{vernam!!}&lt;/strong&gt;&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
       <title>CpawCTF Write-up Q7「Can you execute?」</title>
       <link>/posts/cpaw_write-up_q7/</link>
-      <pubDate>Sat, 01 Oct 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 23 Oct 2022 00:00:00 +0000</pubDate>
       
       <guid>/posts/cpaw_write-up_q7/</guid>
       <description>拡張子がないファイルを貰ってこのファイルを実行しろと言われたが、どうしたら実行できるのだろうか。
