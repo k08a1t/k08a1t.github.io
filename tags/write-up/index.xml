@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Your site title</title>
-    <link>/</link>
-    <description>Recent content on Your site title</description>
+    <title>Write-up on Your site title</title>
+    <link>/tags/write-up/</link>
+    <description>Recent content in Write-up on Your site title</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Oct 2022 10:04:17 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 Oct 2022 10:04:17 +0900</lastBuildDate><atom:link href="/tags/write-up/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CpawCTF Write-up Q7</title>
       <link>/posts/cpaw_write-up_q7/</link>
@@ -32,51 +32,6 @@ interpreter /lib64/ld-linux-x86-64.so.2, &lt;span style=&#34;color:#66d9ef&#34;&
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ./exec_me
 cpaw&lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;Do_you_know_ELF_file?&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;解答：&lt;strong&gt;cpaw{Do_you_know_ELF_file?}&lt;/strong&gt;&lt;/p&gt;
-</content>
-    </item>
-    
-    <item>
-      <title>k08a1t</title>
-      <link>/about/</link>
-      <pubDate>Sun, 23 Oct 2022 12:18:35 +0900</pubDate>
-      
-      <guid>/about/</guid>
-      <description>Name Kobayashi Yukiya
-School Information Science College
-Field of interest Malware Analysis, Log Analysis, Penetration Testing, Reversing&amp;hellip;
-Qualifications  Information Technology Passport Examination Fundamental Information Technology Engineer Examination Applied Informationi Technology Engineer Examination JDLA Deep Learning for GENERAL 2020#2  Hobby Reading mystery novels, Watching Anime, Playing the piano, Baking&amp;hellip;</description>
-      <content>
-  &lt;img src=&#34;/img/icon.jpg&#34;  alt=&#34;icon&#34;  class=&#34;left&#34;  style=&#34;border-radius: 50px;&#34;  /&gt;
-
-
-&lt;h1 id=&#34;name&#34;&gt;Name&lt;/h1&gt;
-&lt;p&gt;Kobayashi Yukiya&lt;/p&gt;
-&lt;h1 id=&#34;school&#34;&gt;School&lt;/h1&gt;
-&lt;p&gt;Information Science College&lt;/p&gt;
-&lt;h1 id=&#34;field-of-interest&#34;&gt;Field of interest&lt;/h1&gt;
-&lt;p&gt;Malware Analysis, Log Analysis, Penetration Testing, Reversing&amp;hellip;&lt;/p&gt;
-&lt;h1 id=&#34;qualifications&#34;&gt;Qualifications&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Information Technology Passport Examination&lt;/li&gt;
-&lt;li&gt;Fundamental Information Technology Engineer Examination&lt;/li&gt;
-&lt;li&gt;Applied Informationi Technology Engineer Examination&lt;/li&gt;
-&lt;li&gt;JDLA Deep Learning for GENERAL 2020#2&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;hobby&#34;&gt;Hobby&lt;/h1&gt;
-&lt;p&gt;Reading mystery novels, Watching Anime, Playing the piano, Baking&amp;hellip;&lt;/p&gt;
-</content>
-    </item>
-    
-    <item>
-      <title>Links</title>
-      <link>/links/</link>
-      <pubDate>Sun, 23 Oct 2022 12:18:35 +0900</pubDate>
-      
-      <guid>/links/</guid>
-      <description>Twitter GitHub HatenaBlog </description>
-      <content>&lt;h1 id=&#34;twitterhttpstwittercomkobalt081&#34;&gt;&lt;a href=&#34;https://twitter.com/kobalt081&#34;&gt;Twitter&lt;/a&gt;&lt;/h1&gt;
-&lt;h1 id=&#34;githubhttpsgithubcomk08a1t&#34;&gt;&lt;a href=&#34;https://github.com/k08a1t&#34;&gt;GitHub&lt;/a&gt;&lt;/h1&gt;
-&lt;h1 id=&#34;hatenabloghttpskobaltloghatenablogcom&#34;&gt;&lt;a href=&#34;https://kobaltlog.hatenablog.com/&#34;&gt;HatenaBlog&lt;/a&gt;&lt;/h1&gt;
 </content>
     </item>
     

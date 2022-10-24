@@ -6,15 +6,32 @@
     <description>Recent content in Posts on Your site title</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 22 Oct 2022 21:58:40 +0900</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 Oct 2022 10:04:17 +0900</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Hello</title>
-      <link>/posts/hello/</link>
-      <pubDate>Sat, 22 Oct 2022 21:58:40 +0900</pubDate>
+      <title>CpawCTF Write-up Q7</title>
+      <link>/posts/cpaw_write-up_q7/</link>
+      <pubDate>Mon, 24 Oct 2022 10:04:17 +0900</pubDate>
       
-      <guid>/posts/hello/</guid>
-      <description>hello!</description>
-      <content>&lt;p&gt;hello!&lt;/p&gt;
+      <guid>/posts/cpaw_write-up_q7/</guid>
+      <description>拡張子がないファイルを貰ってこのファイルを実行しろと言われたが、どうしたら実行できるのだろうか。
+この場合、UnixやLinuxのとあるコマンドを使ってファイルの種類を調べて、適切なOSで実行するのが一般的らしいが…。
+問題ファイル：exec_me
+ Linuxのfileコマンドを用いるとファイルの種類を調べることができる
+$ file exec_me exec_me: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.24, BuildID[sha1]=663a3e0e5a079fddd0de92474688cd6812d3b550, not stripped ELFファイルであることが分かるので、実行権限を確認してLinux環境で実行する
+$ ./exec_me cpaw{Do_you_know_ELF_file?} 解答：cpaw{Do_you_know_ELF_file?}</description>
+      <content>&lt;blockquote&gt;
+&lt;p&gt;拡張子がないファイルを貰ってこのファイルを実行しろと言われたが、どうしたら実行できるのだろうか。&lt;br&gt;
+この場合、UnixやLinuxのとあるコマンドを使ってファイルの種類を調べて、適切なOSで実行するのが一般的らしいが…。&lt;br&gt;
+問題ファイル：exec_me&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Linuxのfileコマンドを用いるとファイルの種類を調べることができる&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ file exec_me
+exec_me: ELF 64-bit LSB executable, x86-64, version &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;SYSV&lt;span style=&#34;color:#f92672&#34;&gt;)&lt;/span&gt;, dynamically linked, 
+interpreter /lib64/ld-linux-x86-64.so.2, &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; GNU/Linux 2.6.24, BuildID&lt;span style=&#34;color:#f92672&#34;&gt;[&lt;/span&gt;sha1&lt;span style=&#34;color:#f92672&#34;&gt;]=&lt;/span&gt;663a3e0e5a079fddd0de92474688cd6812d3b550, not stripped
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;ELFファイルであることが分かるので、実行権限を確認してLinux環境で実行する&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ./exec_me
+cpaw&lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;Do_you_know_ELF_file?&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;解答：&lt;strong&gt;cpaw{Do_you_know_ELF_file?}&lt;/strong&gt;&lt;/p&gt;
 </content>
     </item>
     
