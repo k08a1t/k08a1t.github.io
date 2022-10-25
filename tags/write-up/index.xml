@@ -6,7 +6,103 @@
     <description>Recent content in Write-up on kobalt log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="/tags/write-up/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="/tags/write-up/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>picoCTF Write-up crackme-py</title>
+      <link>/posts/pico_write-up2/</link>
+      <pubDate>Tue, 25 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/pico_write-up2/</guid>
+      <description>(問題文なし) 問題ファイル：crackme.py
+ 実行権限を与えて、とりあえず実行してみると入力する2数のうち正の数で最大のものを出力している
+$ python3 crackme.py What&amp;#39;s your first number? 1 What&amp;#39;s your second number? 2 The number with largest positive magnitude is 2 ソースコードを見てみると、暗号文と復号し出力する関数が確認できるがこの関数は呼び出されていない
+# Hiding this really important number in an obscure piece of code is brilliant! # AND it&amp;#39;s encrypted! # We want our biggest client to know his information is safe with us. bezos_cc_secret = &amp;#34;A:4@r%uL`M-^M0c0AbcM-MFE067d3eh2bN&amp;#34; # Reference alphabet alphabet = &amp;#34;!\&amp;#34;#$%&amp;amp;&amp;#39;()*+,-./0123456789:;&amp;lt;=&amp;gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ&amp;#34;+ \ &amp;#34;[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~&amp;#34; def decode_secret(secret): &amp;#34;&amp;#34;&amp;#34;ROT47 decode NOTE: encode and decode are the same operation in the ROT cipher family.</description>
+      <content>&lt;blockquote&gt;
+&lt;p&gt;(問題文なし) &lt;br&gt;
+問題ファイル：crackme.py&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;実行権限を与えて、とりあえず実行してみると入力する2数のうち正の数で最大のものを出力している&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ python3 crackme.py
+What&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s your first number? 1
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;What&amp;#39;&lt;/span&gt;s your second number? &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
+The number with largest positive magnitude is &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;ソースコードを見てみると、暗号文と復号し出力する関数が確認できるがこの関数は呼び出されていない&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Hiding this really important number in an obscure piece of code is brilliant!&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# AND it&amp;#39;s encrypted!&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# We want our biggest client to know his information is safe with us.&lt;/span&gt;
+bezos_cc_secret &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;A:4@r&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;%u&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;L`M-^M0c0AbcM-MFE067d3eh2bN&amp;#34;&lt;/span&gt;
+ 
+&lt;span style=&#34;color:#75715e&#34;&gt;# Reference alphabet&lt;/span&gt;
+alphabet &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;!&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;#$%&amp;amp;&amp;#39;()*+,-./0123456789:;&amp;lt;=&amp;gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; \
+           &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;[&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\\&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;]^_`abcdefghijklmnopqrstuvwxyz{|}~&amp;#34;&lt;/span&gt;
+ 
+ 
+ 
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;decode_secret&lt;/span&gt;(secret):
+   &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&amp;#34;ROT47 decode
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; 
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;   NOTE: encode and decode are the same operation in the ROT cipher family.
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;   &amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+ 
+   &lt;span style=&#34;color:#75715e&#34;&gt;# Encryption key&lt;/span&gt;
+   rotate_const &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;47&lt;/span&gt;
+ 
+   &lt;span style=&#34;color:#75715e&#34;&gt;# Storage for decoded secret&lt;/span&gt;
+   decoded &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+ 
+   &lt;span style=&#34;color:#75715e&#34;&gt;# decode loop&lt;/span&gt;
+   &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; c &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; secret:
+       index &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; alphabet&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find(c)
+       original_index &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (index &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; rotate_const) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; len(alphabet)
+       decoded &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; decoded &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; alphabet[original_index]
+ 
+   print(decoded)
+ 
+ 
+ 
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;choose_greatest&lt;/span&gt;():
+&lt;span style=&#34;color:#f92672&#34;&gt;...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;この関数を呼び出すように書き換えて実行するとフラグを獲得できる&lt;/p&gt;
+&lt;p&gt;解答：&lt;strong&gt;picoCTF{1|\/|_4_p34|\|ut_ef5b69a3}&lt;/strong&gt;&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>picoCTF Write-up Transformation</title>
+      <link>/posts/pico_write-up1/</link>
+      <pubDate>Tue, 25 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/pico_write-up1/</guid>
+      <description>I wonder what this really is&amp;hellip; enc &amp;lsquo;&#39;.join([chr((ord(flag[i]) &amp;laquo; 8) + ord(flag[i + 1])) for i in range(0, len(flag), 2)]) 問題ファイル：enc hint1: You may find some decoders online
+ 実行権限を与えてfileコマンドで問題ファイルの形式を確認するとUnicode textだと分かる
+$ file enc enc: Unicode text, UTF-8 text, with no line terminators 中身を見ると以下のような文字列が確認できるが、読むことができない
+$ cat enc 灩捯䍔䙻ㄶ形楴獟楮獴㌴摟潦弸彥ㄴㅡて㝽 問題文に暗号化に使っていると思われるコードが書かれているので、これを参考に復号プログラムを作成する
+c=&amp;#34;灩捯䍔䙻ㄶ形楴獟楮獴㌴摟潦弸彥ㄴㅡて㝽&amp;#34; for i in c: i = ord(i) print(chr(i &amp;gt;&amp;gt; 8), end=&amp;#34;&amp;#34;) print(chr(i &amp;amp; 255), end=&amp;#34;&amp;#34;) これを実行するとフラグを獲得できる
+解答：picoCTF{16_bits_inst34d_of_8_e141a0f7}</description>
+      <content>&lt;blockquote&gt;
+&lt;p&gt;I wonder what this really is&amp;hellip; &lt;em&gt;&lt;strong&gt;enc&lt;/strong&gt;&lt;/em&gt; &amp;lsquo;&#39;.join([chr((ord(flag[i]) &amp;laquo; 8) + ord(flag[i + 1])) for i in range(0, len(flag), 2)]) &lt;br&gt;
+問題ファイル：enc &lt;br&gt;
+&lt;br&gt;
+&lt;strong&gt;hint1&lt;/strong&gt;: You may find some decoders online&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;実行権限を与えてfileコマンドで問題ファイルの形式を確認するとUnicode textだと分かる&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ file enc 
+enc: Unicode text, UTF-8 text, with no line terminators
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;中身を見ると以下のような文字列が確認できるが、読むことができない&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cat enc 
+灩捯䍔䙻ㄶ形楴獟楮獴㌴摟潦弸彥ㄴㅡて㝽
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;問題文に暗号化に使っていると思われるコードが書かれているので、これを参考に復号プログラムを作成する&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;c&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;灩捯䍔䙻ㄶ形楴獟楮獴㌴摟潦弸彥ㄴㅡて㝽&amp;#34;&lt;/span&gt;
+ 
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; c:
+   i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ord(i)
+   print(chr(i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;), end&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;)
+   print(chr(i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;255&lt;/span&gt;), end&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;これを実行するとフラグを獲得できる&lt;/p&gt;
+&lt;p&gt;解答：&lt;strong&gt;picoCTF{16_bits_inst34d_of_8_e141a0f7}&lt;/strong&gt;&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>CpawCTF Write-up Q21「reversing easy!」</title>
       <link>/posts/cpaw_write-up_q21/</link>
@@ -192,7 +288,7 @@ interpreter /lib/ld-linux.so.2, &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt
 }
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;配列local_7cに格納された16進数と0x19の排他的論理和を配列local_44に格納していることが分かるので、
-これを出力するように書き換える。&lt;/p&gt;
+これを出力するように書き換える&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt;)
  
@@ -231,7 +327,7 @@ interpreter /lib/ld-linux.so.2, &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt
  }
  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;これをC言語でコンパイルし、実行するとフラグを出力できる。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;これをC言語でコンパイルし、実行するとフラグを出力できる&lt;/p&gt;
 &lt;p&gt;解答：&lt;strong&gt;cpaw{vernam!!}&lt;/strong&gt;&lt;/p&gt;
 </content>
     </item>

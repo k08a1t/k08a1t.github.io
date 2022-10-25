@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>picoCTF Write-up crackme-py :: kobalt log</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="This is picoCTF&#39;s Write-up." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/posts/pico_write-up2/" />
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/style.css">
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="/img/theme-colors/blue.png">
+  <link rel="apple-touch-icon" href="/img/theme-colors/blue.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="picoCTF Write-up crackme-py">
+<meta property="og:description" content="This is picoCTF&#39;s Write-up." />
+<meta property="og:url" content="/posts/pico_write-up2/" />
+<meta property="og:site_name" content="kobalt log" />
+
+  
+    <meta property="og:image" content="/img/favicon/blue.png">
+  
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+  <meta property="article:published_time" content="2022-10-25 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="blue">
+
+
+<div class="container full headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Home
+  </div>
+</a>
+
+    </div>
+    
+      <div class="menu-trigger">menu</div>
+    
+  </div>
+  
+    <nav class="menu hidden-on-mobile">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/links">Links</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/links">Links</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="/posts/pico_write-up2/">picoCTF Write-up crackme-py</a>
+  </h1>
+  <div class="post-meta">
+    
+      <time class="post-date">
+        2022-10-25 ::
+        
+      </time>
+    
+    
+      <span class="post-author">k08a1t</span>
+    
+    
+  </div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="/tags/write-up/">Write-up</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <blockquote>
+<p>(問題文なし) <br>
+問題ファイル：crackme.py</p>
+</blockquote>
+<p>実行権限を与えて、とりあえず実行してみると入力する2数のうち正の数で最大のものを出力している</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python3 crackme.py
+What<span style="color:#e6db74">&#39;s your first number? 1
+</span><span style="color:#e6db74">What&#39;</span>s your second number? <span style="color:#ae81ff">2</span>
+The number with largest positive magnitude is <span style="color:#ae81ff">2</span>
+</code></pre></div><p>ソースコードを見てみると、暗号文と復号し出力する関数が確認できるがこの関数は呼び出されていない</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Hiding this really important number in an obscure piece of code is brilliant!</span>
+<span style="color:#75715e"># AND it&#39;s encrypted!</span>
+<span style="color:#75715e"># We want our biggest client to know his information is safe with us.</span>
+bezos_cc_secret <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;A:4@r</span><span style="color:#e6db74">%u</span><span style="color:#e6db74">L`M-^M0c0AbcM-MFE067d3eh2bN&#34;</span>
+ 
+<span style="color:#75715e"># Reference alphabet</span>
+alphabet <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;!</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">#$%&amp;&#39;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ&#34;</span><span style="color:#f92672">+</span> \
+           <span style="color:#e6db74">&#34;[</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">]^_`abcdefghijklmnopqrstuvwxyz{|}~&#34;</span>
+ 
+ 
+ 
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decode_secret</span>(secret):
+   <span style="color:#e6db74">&#34;&#34;&#34;ROT47 decode
+</span><span style="color:#e6db74"> 
+</span><span style="color:#e6db74">   NOTE: encode and decode are the same operation in the ROT cipher family.
+</span><span style="color:#e6db74">   &#34;&#34;&#34;</span>
+ 
+   <span style="color:#75715e"># Encryption key</span>
+   rotate_const <span style="color:#f92672">=</span> <span style="color:#ae81ff">47</span>
+ 
+   <span style="color:#75715e"># Storage for decoded secret</span>
+   decoded <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+ 
+   <span style="color:#75715e"># decode loop</span>
+   <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> secret:
+       index <span style="color:#f92672">=</span> alphabet<span style="color:#f92672">.</span>find(c)
+       original_index <span style="color:#f92672">=</span> (index <span style="color:#f92672">+</span> rotate_const) <span style="color:#f92672">%</span> len(alphabet)
+       decoded <span style="color:#f92672">=</span> decoded <span style="color:#f92672">+</span> alphabet[original_index]
+ 
+   print(decoded)
+ 
+ 
+ 
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">choose_greatest</span>():
+<span style="color:#f92672">...</span>
+</code></pre></div><p>この関数を呼び出すように書き換えて実行するとフラグを獲得できる</p>
+<p>解答：<strong>picoCTF{1|\/|_4_p34|\|ut_ef5b69a3}</strong></p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
+    </div>
+    <div class="pagination__buttons">
+        
+        
+        <span class="button next">
+            <a href="/posts/pico_write-up1/">
+                <span class="button__text">picoCTF Write-up Transformation</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2022 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
