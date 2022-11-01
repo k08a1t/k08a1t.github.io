@@ -6,7 +6,17 @@
     <description>Recent content in Tags on kobalt log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>event</title>
+      <link>/tags/event/</link>
+      <pubDate>Sun, 30 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/event/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
     <item>
       <title>Write-up</title>
       <link>/tags/write-up/</link>
