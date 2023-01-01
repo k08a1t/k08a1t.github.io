@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   
-    <title>CpawCTF Write-up Q7「Can you execute?」 :: kobalt log</title>
+    <title>Aspirations for 2023 :: kobalt log</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="This is CpawCTF&#39;s question 7&#39;s Write-up." />
+<meta name="description" content="I wrote down my aspirations for 2023 for now." />
 <meta name="keywords" content="" />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="/posts/cpaw_write-up_q7/" />
+<link rel="canonical" href="/posts/aspirations2023/" />
 
 
 
@@ -40,9 +40,9 @@
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="CpawCTF Write-up Q7「Can you execute?」">
-<meta property="og:description" content="This is CpawCTF&#39;s question 7&#39;s Write-up." />
-<meta property="og:url" content="/posts/cpaw_write-up_q7/" />
+<meta property="og:title" content="Aspirations for 2023">
+<meta property="og:description" content="I wrote down my aspirations for 2023 for now." />
+<meta property="og:url" content="/posts/aspirations2023/" />
 <meta property="og:site_name" content="kobalt log" />
 
   
@@ -53,7 +53,7 @@
 <meta property="og:image:height" content="1024">
 
 
-  <meta property="article:published_time" content="2022-10-23 00:00:00 &#43;0000 UTC" />
+  <meta property="article:published_time" content="2023-01-01 00:00:00 &#43;0000 UTC" />
 
 
 
@@ -127,12 +127,12 @@
     
 <article class="post">
   <h1 class="post-title">
-    <a href="/posts/cpaw_write-up_q7/">CpawCTF Write-up Q7「Can you execute?」</a>
+    <a href="/posts/aspirations2023/">Aspirations for 2023</a>
   </h1>
   <div class="post-meta">
     
       <time class="post-date">
-        2022-10-23 ::
+        2023-01-01 ::
         
       </time>
     
@@ -145,7 +145,7 @@
   
     <span class="post-tags">
       
-      #<a href="/tags/write-up/">Write-up</a>&nbsp;
+      #<a href="/tags/others/">Others</a>&nbsp;
       
     </span>
   
@@ -155,21 +155,21 @@
   
 
   <div class="post-content"><div>
-        <blockquote>
-<p>拡張子がないファイルを貰ってこのファイルを実行しろと言われたが、どうしたら実行できるのだろうか。<br>
-この場合、UnixやLinuxのとあるコマンドを使ってファイルの種類を調べて、適切なOSで実行するのが一般的らしいが…。<br>
-問題ファイル：exec_me</p>
-</blockquote>
-<p>Linuxのfileコマンドを用いるとファイルの種類を調べることができる</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ file exec_me
-exec_me: ELF 64-bit LSB executable, x86-64, version <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>SYSV<span style="color:#f92672">)</span>, dynamically linked, 
-interpreter /lib64/ld-linux-x86-64.so.2, <span style="color:#66d9ef">for</span> GNU/Linux 2.6.24, BuildID<span style="color:#f92672">[</span>sha1<span style="color:#f92672">]=</span>663a3e0e5a079fddd0de92474688cd6812d3b550, not stripped
-</code></pre></div><p>ELFファイルであることが分かるので、実行権限を与えてLinux環境で実行する</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ chmod u+x exec_me
-
-$ ./exec_me
-cpaw<span style="color:#f92672">{</span>Do_you_know_ELF_file?<span style="color:#f92672">}</span>
-</code></pre></div><p>解答：<strong>cpaw{Do_you_know_ELF_file?}</strong></p>
+        <p>昨年はやりたいことがふんわりした状態で過ごしていたので、今年は抱負を考えてみました。</p>
+<h2 id="自分の活動を整理することで自身の能力を把握し即戦力として働けるように準備する">自分の活動を整理することで自身の能力を把握し、即戦力として働けるように準備する<a href="#自分の活動を整理することで自身の能力を把握し即戦力として働けるように準備する" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>あと一年と少しすれば社会人なので、その準備をする年になるかな&hellip;。というところです。</p>
+<p>具体的には、ブログやGitHabで自分の学習したことや参加したイベントなどについてまとめつつ、振り返っては反省/改善していこうと思っています。
+　　</p>
+<p><strong>細かい目標も決めておきます</strong></p>
+<ul>
+<li>情報処理安全確保支援士取得</li>
+<li>セキュリティイベントへの参加(SecurityCamp, SecHack365, CODE BLUE&hellip;)</li>
+<li>英語能力を上げる(主に語彙、会話)</li>
+</ul>
+<hr>
+<p>こんなところでしょうか。
+まずは就活を頑張らなければいけないのですがそれを理由に技術力が衰えていくのは嫌なので、<br>
+体調管理には気をつけつつも全力で突っ走る一年にしたいです。</p>
 
       </div></div>
 
@@ -182,13 +182,13 @@ cpaw<span style="color:#f92672">{</span>Do_you_know_ELF_file?<span style="color:
     </div>
     <div class="pagination__buttons">
         
-        <span class="button previous">
-            <a href="/posts/cpaw_write-up_q23/">
-                <span class="button__icon">←</span>
-                <span class="button__text">CpawCTF Write-up Q23「またやらかした！」</span>
+        
+        <span class="button next">
+            <a href="/posts/codeblue2022/">
+                <span class="button__text">CODE BLUE2022 学生スタッフ　体験参加記</span>
+                <span class="button__icon">→</span>
             </a>
         </span>
-        
         
     </div>
 </div>

@@ -15,7 +15,7 @@
       <guid>/posts/pico_write-up2/</guid>
       <description>(問題文なし) 問題ファイル：crackme.py
  実行権限を与えて、とりあえず実行してみると入力する2数のうち正の数で最大のものを出力している
-$ python3 crackme.py What&amp;#39;s your first number? 1 What&amp;#39;s your second number? 2 The number with largest positive magnitude is 2 ソースコードを見てみると、暗号文と復号し出力する関数が確認できるがこの関数は呼び出されていない
+$ python3 crackme.py What´s your first number? 1 What´s your second number? 2 The number with largest positive magnitude is 2 ソースコードを見てみると、暗号文と復号し出力する関数が確認できるがこの関数は呼び出されていない
 # Hiding this really important number in an obscure piece of code is brilliant! # AND it&amp;#39;s encrypted! # We want our biggest client to know his information is safe with us. bezos_cc_secret = &amp;#34;A:4@r%uL`M-^M0c0AbcM-MFE067d3eh2bN&amp;#34; # Reference alphabet alphabet = &amp;#34;!\&amp;#34;#$%&amp;amp;&amp;#39;()*+,-./0123456789:;&amp;lt;=&amp;gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ&amp;#34;+ \ &amp;#34;[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~&amp;#34; def decode_secret(secret): &amp;#34;&amp;#34;&amp;#34;ROT47 decode NOTE: encode and decode are the same operation in the ROT cipher family.</description>
       <content>&lt;blockquote&gt;
 &lt;p&gt;(問題文なし) &lt;br&gt;
@@ -23,8 +23,8 @@ $ python3 crackme.py What&amp;#39;s your first number? 1 What&amp;#39;s your sec
 &lt;/blockquote&gt;
 &lt;p&gt;実行権限を与えて、とりあえず実行してみると入力する2数のうち正の数で最大のものを出力している&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ python3 crackme.py
-What&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;s your first number? 1
-&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;What&amp;#39;&lt;/span&gt;s your second number? &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
+What´s your first number? &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+What´s your second number? &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
 The number with largest positive magnitude is &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;ソースコードを見てみると、暗号文と復号し出力する関数が確認できるがこの関数は呼び出されていない&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Hiding this really important number in an obscure piece of code is brilliant!&lt;/span&gt;
