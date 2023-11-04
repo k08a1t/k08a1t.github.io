@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "style.css",
-	"sourceRoot": "/home/k08a1t/workspace/blog",
+	"sourceRoot": "/mnt/c/workspace/blog/blog",
 	"sources": [
 		"css/base.scss",
 		"themes/terminal/assets/css/variables.scss",

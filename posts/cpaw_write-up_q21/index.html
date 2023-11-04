@@ -160,116 +160,116 @@
 問題ファイル：rev100</p>
 </blockquote>
 <p>実行権限を与えて、fileコマンドで実行ファイルの形式を確認するとELFであることが分かる</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ chmod u+x rev100
-
-$ file rev100
-rev100: ELF 32-bit LSB executable, Intel 80386, version <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>SYSV<span style="color:#f92672">)</span>, dynamically linked,
-interpreter /lib/ld-linux.so.2, <span style="color:#66d9ef">for</span> GNU/Linux 2.6.24, BuildID<span style="color:#f92672">[</span>sha1<span style="color:#f92672">]=</span>f94360edd84a940de2b74007d4289705601d618d, not stripped
-</code></pre></div><p>stringsコマンドを実行するとフラグのようなものが見える</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ strings rev100
-/lib/ld-linux.so.2
-libc.so.6
-_IO_stdin_used
-__stack_chk_fail
-putchar
-printf
-__libc_start_main
-__gmon_start__
-GLIBC_2.4
-GLIBC_2.0
-PTRh
-D$L1
-D$Fcpawf
-D$J<span style="color:#f92672">{</span>
-D$ y
-D$$a
-D<span style="color:#66d9ef">$(</span>k
-D$,i
-D$0n
-D$4i
-D$8k
-D$&lt;u
-D$@!
-T$Le3
-<span style="color:#f92672">[</span>^_<span style="color:#f92672">]</span>
-;*2$<span style="color:#e6db74">&#34;
-</span><span style="color:#e6db74">GCC: (Ubuntu 4.8.4-2ubuntu1~14.04) 4.8.4
-</span><span style="color:#e6db74">GCC: (Ubuntu 4.8.2-19ubuntu1) 4.8.2
-</span><span style="color:#e6db74">...
-</span></code></pre></div><p>radare2でもう少し詳しく見てみるとフラグが確認できる</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ r2 rev100
-<span style="color:#f92672">[</span>0x080483a0<span style="color:#f92672">]</span>&gt; aaa
-<span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> Analyze all flags starting with sym. and entry0 <span style="color:#f92672">(</span>aa<span style="color:#f92672">)</span>
-<span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> Analyze <span style="color:#66d9ef">function</span> calls <span style="color:#f92672">(</span>aac<span style="color:#f92672">)</span>
-<span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> Analyze len bytes of instructions <span style="color:#66d9ef">for</span> references <span style="color:#f92672">(</span>aar<span style="color:#f92672">)</span>
-<span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> Finding and parsing C++ vtables <span style="color:#f92672">(</span>avrr<span style="color:#f92672">)</span>
-<span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> Type matching analysis <span style="color:#66d9ef">for</span> all functions <span style="color:#f92672">(</span>aaft<span style="color:#f92672">)</span>
-<span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> Propagate noreturn information <span style="color:#f92672">(</span>aanr<span style="color:#f92672">)</span>
-<span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> Use -AA or aaaa to perform additional experimental analysis.
-<span style="color:#f92672">[</span>0x080483a0<span style="color:#f92672">]</span>&gt; afl
-0x080483a0    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">34</span>           entry0
-0x08048380    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">6</span>            sym.imp.__libc_start_main
-0x080483e0    <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">42</span>           sym.deregister_tm_clones
-0x08048410    <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">55</span>           sym.register_tm_clones
-0x08048450    <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">30</span>           sym.__do_global_dtors_aux
-0x08048470    <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">45</span>   -&gt; <span style="color:#ae81ff">44</span>   entry.init0
-0x08048600    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>            sym.__libc_csu_fini
-0x080483d0    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">4</span>            sym.__x86.get_pc_thunk.bx
-0x08048604    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">20</span>           sym._fini
-0x08048590    <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">97</span>           sym.__libc_csu_init
-0x0804849d    <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">238</span>          main
-0x0804831c    <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">35</span>           sym._init
-0x08048370    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">6</span>            loc.imp.__gmon_start__
-0x08048350    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">6</span>            sym.imp.printf
-0x08048360    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">6</span>            sym.imp.__stack_chk_fail
-0x08048390    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">6</span>            sym.imp.putchar
-<span style="color:#f92672">[</span>0x080483a0<span style="color:#f92672">]</span>&gt; s main
-<span style="color:#f92672">[</span>0x0804849d<span style="color:#f92672">]</span>&gt; pdc
-int main <span style="color:#f92672">(</span>int esi, int edx<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    loc_0x804849d:
-        // DATA XREF from entry0 @ 0x80483b7
-        push  <span style="color:#f92672">(</span>ebp<span style="color:#f92672">)</span>
-        ebp <span style="color:#f92672">=</span> esp
-        esp &amp;<span style="color:#f92672">=</span> 0xfffffff0
-        esp -<span style="color:#f92672">=</span> 0x50
-        eax <span style="color:#f92672">=</span> dword gs:<span style="color:#f92672">[</span>0x14<span style="color:#f92672">]</span>
-        dword <span style="color:#f92672">[</span>var_4ch<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> eax
-        eax <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-        dword <span style="color:#f92672">[</span>var_46h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x77617063 // <span style="color:#e6db74">&#39;cpaw&#39;</span>
-        // <span style="color:#f92672">[</span>0x77617063:4<span style="color:#f92672">]=</span>-1
-        word <span style="color:#f92672">[</span>var_4ah<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x7b // <span style="color:#e6db74">&#39;{&#39;</span>
-        // <span style="color:#f92672">[</span>0x7b:2<span style="color:#f92672">]=</span>0xffff // <span style="color:#ae81ff">123</span>
-        dword <span style="color:#f92672">[</span>c<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x79 // <span style="color:#e6db74">&#39;y&#39;</span>
-        // <span style="color:#f92672">[</span>0x79:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">121</span>
-        dword <span style="color:#f92672">[</span>var_24h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x61 // <span style="color:#e6db74">&#39;a&#39;</span>
-        // <span style="color:#f92672">[</span>0x61:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">97</span>
-        dword <span style="color:#f92672">[</span>var_28h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x6b // <span style="color:#e6db74">&#39;k&#39;</span>
-        // <span style="color:#f92672">[</span>0x6b:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">107</span>
-        dword <span style="color:#f92672">[</span>var_2ch<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x69 // <span style="color:#e6db74">&#39;i&#39;</span>
-        // <span style="color:#f92672">[</span>0x69:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">105</span>
-        dword <span style="color:#f92672">[</span>var_30h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x6e // <span style="color:#e6db74">&#39;n&#39;</span>
-        // <span style="color:#f92672">[</span>0x6e:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">110</span>
-        dword <span style="color:#f92672">[</span>var_34h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x69 // <span style="color:#e6db74">&#39;i&#39;</span>
-        // <span style="color:#f92672">[</span>0x69:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">105</span>
-        dword <span style="color:#f92672">[</span>var_38h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x6b // <span style="color:#e6db74">&#39;k&#39;</span>
-        // <span style="color:#f92672">[</span>0x6b:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">107</span>
-        dword <span style="color:#f92672">[</span>var_3ch<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x75 // <span style="color:#e6db74">&#39;u&#39;</span>
-        // <span style="color:#f92672">[</span>0x75:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">117</span>
-        dword <span style="color:#f92672">[</span>var_40h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x21 // <span style="color:#e6db74">&#39;!&#39;</span>
-        // <span style="color:#f92672">[</span>0x21:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">33</span>
-        word <span style="color:#f92672">[</span>var_15h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0xa7d // <span style="color:#e6db74">&#39;}\n&#39;</span>
-        // <span style="color:#f92672">[</span>0xa7d:2<span style="color:#f92672">]=</span>0xffff // <span style="color:#ae81ff">2685</span>
-        byte <span style="color:#f92672">[</span>var_17h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
-        dword <span style="color:#f92672">[</span>var_1ch<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
-        eax <span style="color:#f92672">=</span> var_46h // <span style="color:#e6db74">&#34;cpaw{&#34;</span>
-        dword <span style="color:#f92672">[</span>var_4h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> eax
-        dword <span style="color:#f92672">[</span>esp<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x8048620 // <span style="color:#f92672">[</span>0x8048620:4<span style="color:#f92672">]=</span>0x7325 // const char *format
-        sym.imp.printf  <span style="color:#f92672">()</span>
-        // int printf<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;%s&#34;</span><span style="color:#f92672">)</span>
-        var <span style="color:#f92672">=</span> dword <span style="color:#f92672">[</span>var_1ch<span style="color:#f92672">]</span> - <span style="color:#ae81ff">5</span>
-        <span style="color:#66d9ef">if</span>  <span style="color:#f92672">(</span>!var<span style="color:#f92672">)</span> goto loc_0x804855e // likely
-        ...
-</code></pre></div><p>解答：<strong>cpaw{yakiniku!}</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ chmod u+x rev100
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ file rev100
+</span></span><span style="display:flex;"><span>rev100: ELF 32-bit LSB executable, Intel 80386, version <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>SYSV<span style="color:#f92672">)</span>, dynamically linked,
+</span></span><span style="display:flex;"><span>interpreter /lib/ld-linux.so.2, <span style="color:#66d9ef">for</span> GNU/Linux 2.6.24, BuildID<span style="color:#f92672">[</span>sha1<span style="color:#f92672">]=</span>f94360edd84a940de2b74007d4289705601d618d, not stripped
+</span></span></code></pre></div><p>stringsコマンドを実行するとフラグのようなものが見える</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ strings rev100
+</span></span><span style="display:flex;"><span>/lib/ld-linux.so.2
+</span></span><span style="display:flex;"><span>libc.so.6
+</span></span><span style="display:flex;"><span>_IO_stdin_used
+</span></span><span style="display:flex;"><span>__stack_chk_fail
+</span></span><span style="display:flex;"><span>putchar
+</span></span><span style="display:flex;"><span>printf
+</span></span><span style="display:flex;"><span>__libc_start_main
+</span></span><span style="display:flex;"><span>__gmon_start__
+</span></span><span style="display:flex;"><span>GLIBC_2.4
+</span></span><span style="display:flex;"><span>GLIBC_2.0
+</span></span><span style="display:flex;"><span>PTRh
+</span></span><span style="display:flex;"><span>D$L1
+</span></span><span style="display:flex;"><span>D$Fcpawf
+</span></span><span style="display:flex;"><span>D$J<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>D$ y
+</span></span><span style="display:flex;"><span>D$$a
+</span></span><span style="display:flex;"><span>D<span style="color:#66d9ef">$(</span>k
+</span></span><span style="display:flex;"><span>D$,i
+</span></span><span style="display:flex;"><span>D$0n
+</span></span><span style="display:flex;"><span>D$4i
+</span></span><span style="display:flex;"><span>D$8k
+</span></span><span style="display:flex;"><span>D$&lt;u
+</span></span><span style="display:flex;"><span>D$@!
+</span></span><span style="display:flex;"><span>T$Le3
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>^_<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>;*2$<span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">GCC: (Ubuntu 4.8.4-2ubuntu1~14.04) 4.8.4
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">GCC: (Ubuntu 4.8.2-19ubuntu1) 4.8.2
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">...
+</span></span></span></code></pre></div><p>radare2でもう少し詳しく見てみるとフラグが確認できる</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ r2 rev100
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0x080483a0<span style="color:#f92672">]</span>&gt; aaa
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> Analyze all flags starting with sym. and entry0 <span style="color:#f92672">(</span>aa<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> Analyze <span style="color:#66d9ef">function</span> calls <span style="color:#f92672">(</span>aac<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> Analyze len bytes of instructions <span style="color:#66d9ef">for</span> references <span style="color:#f92672">(</span>aar<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> Finding and parsing C++ vtables <span style="color:#f92672">(</span>avrr<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> Type matching analysis <span style="color:#66d9ef">for</span> all functions <span style="color:#f92672">(</span>aaft<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> Propagate noreturn information <span style="color:#f92672">(</span>aanr<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> Use -AA or aaaa to perform additional experimental analysis.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0x080483a0<span style="color:#f92672">]</span>&gt; afl
+</span></span><span style="display:flex;"><span>0x080483a0    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">34</span>           entry0
+</span></span><span style="display:flex;"><span>0x08048380    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">6</span>            sym.imp.__libc_start_main
+</span></span><span style="display:flex;"><span>0x080483e0    <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">42</span>           sym.deregister_tm_clones
+</span></span><span style="display:flex;"><span>0x08048410    <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">55</span>           sym.register_tm_clones
+</span></span><span style="display:flex;"><span>0x08048450    <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">30</span>           sym.__do_global_dtors_aux
+</span></span><span style="display:flex;"><span>0x08048470    <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">45</span>   -&gt; <span style="color:#ae81ff">44</span>   entry.init0
+</span></span><span style="display:flex;"><span>0x08048600    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>            sym.__libc_csu_fini
+</span></span><span style="display:flex;"><span>0x080483d0    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">4</span>            sym.__x86.get_pc_thunk.bx
+</span></span><span style="display:flex;"><span>0x08048604    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">20</span>           sym._fini
+</span></span><span style="display:flex;"><span>0x08048590    <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">97</span>           sym.__libc_csu_init
+</span></span><span style="display:flex;"><span>0x0804849d    <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">238</span>          main
+</span></span><span style="display:flex;"><span>0x0804831c    <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">35</span>           sym._init
+</span></span><span style="display:flex;"><span>0x08048370    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">6</span>            loc.imp.__gmon_start__
+</span></span><span style="display:flex;"><span>0x08048350    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">6</span>            sym.imp.printf
+</span></span><span style="display:flex;"><span>0x08048360    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">6</span>            sym.imp.__stack_chk_fail
+</span></span><span style="display:flex;"><span>0x08048390    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">6</span>            sym.imp.putchar
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0x080483a0<span style="color:#f92672">]</span>&gt; s main
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>0x0804849d<span style="color:#f92672">]</span>&gt; pdc
+</span></span><span style="display:flex;"><span>int main <span style="color:#f92672">(</span>int esi, int edx<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    loc_0x804849d:
+</span></span><span style="display:flex;"><span>        // DATA XREF from entry0 @ 0x80483b7
+</span></span><span style="display:flex;"><span>        push  <span style="color:#f92672">(</span>ebp<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        ebp <span style="color:#f92672">=</span> esp
+</span></span><span style="display:flex;"><span>        esp &amp;<span style="color:#f92672">=</span> 0xfffffff0
+</span></span><span style="display:flex;"><span>        esp -<span style="color:#f92672">=</span> 0x50
+</span></span><span style="display:flex;"><span>        eax <span style="color:#f92672">=</span> dword gs:<span style="color:#f92672">[</span>0x14<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>        dword <span style="color:#f92672">[</span>var_4ch<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> eax
+</span></span><span style="display:flex;"><span>        eax <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        dword <span style="color:#f92672">[</span>var_46h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x77617063 // <span style="color:#e6db74">&#39;cpaw&#39;</span>
+</span></span><span style="display:flex;"><span>        // <span style="color:#f92672">[</span>0x77617063:4<span style="color:#f92672">]=</span>-1
+</span></span><span style="display:flex;"><span>        word <span style="color:#f92672">[</span>var_4ah<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x7b // <span style="color:#e6db74">&#39;{&#39;</span>
+</span></span><span style="display:flex;"><span>        // <span style="color:#f92672">[</span>0x7b:2<span style="color:#f92672">]=</span>0xffff // <span style="color:#ae81ff">123</span>
+</span></span><span style="display:flex;"><span>        dword <span style="color:#f92672">[</span>c<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x79 // <span style="color:#e6db74">&#39;y&#39;</span>
+</span></span><span style="display:flex;"><span>        // <span style="color:#f92672">[</span>0x79:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">121</span>
+</span></span><span style="display:flex;"><span>        dword <span style="color:#f92672">[</span>var_24h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x61 // <span style="color:#e6db74">&#39;a&#39;</span>
+</span></span><span style="display:flex;"><span>        // <span style="color:#f92672">[</span>0x61:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">97</span>
+</span></span><span style="display:flex;"><span>        dword <span style="color:#f92672">[</span>var_28h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x6b // <span style="color:#e6db74">&#39;k&#39;</span>
+</span></span><span style="display:flex;"><span>        // <span style="color:#f92672">[</span>0x6b:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">107</span>
+</span></span><span style="display:flex;"><span>        dword <span style="color:#f92672">[</span>var_2ch<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x69 // <span style="color:#e6db74">&#39;i&#39;</span>
+</span></span><span style="display:flex;"><span>        // <span style="color:#f92672">[</span>0x69:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">105</span>
+</span></span><span style="display:flex;"><span>        dword <span style="color:#f92672">[</span>var_30h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x6e // <span style="color:#e6db74">&#39;n&#39;</span>
+</span></span><span style="display:flex;"><span>        // <span style="color:#f92672">[</span>0x6e:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">110</span>
+</span></span><span style="display:flex;"><span>        dword <span style="color:#f92672">[</span>var_34h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x69 // <span style="color:#e6db74">&#39;i&#39;</span>
+</span></span><span style="display:flex;"><span>        // <span style="color:#f92672">[</span>0x69:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">105</span>
+</span></span><span style="display:flex;"><span>        dword <span style="color:#f92672">[</span>var_38h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x6b // <span style="color:#e6db74">&#39;k&#39;</span>
+</span></span><span style="display:flex;"><span>        // <span style="color:#f92672">[</span>0x6b:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">107</span>
+</span></span><span style="display:flex;"><span>        dword <span style="color:#f92672">[</span>var_3ch<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x75 // <span style="color:#e6db74">&#39;u&#39;</span>
+</span></span><span style="display:flex;"><span>        // <span style="color:#f92672">[</span>0x75:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">117</span>
+</span></span><span style="display:flex;"><span>        dword <span style="color:#f92672">[</span>var_40h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x21 // <span style="color:#e6db74">&#39;!&#39;</span>
+</span></span><span style="display:flex;"><span>        // <span style="color:#f92672">[</span>0x21:4<span style="color:#f92672">]=</span>-1 // <span style="color:#ae81ff">33</span>
+</span></span><span style="display:flex;"><span>        word <span style="color:#f92672">[</span>var_15h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0xa7d // <span style="color:#e6db74">&#39;}\n&#39;</span>
+</span></span><span style="display:flex;"><span>        // <span style="color:#f92672">[</span>0xa7d:2<span style="color:#f92672">]=</span>0xffff // <span style="color:#ae81ff">2685</span>
+</span></span><span style="display:flex;"><span>        byte <span style="color:#f92672">[</span>var_17h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        dword <span style="color:#f92672">[</span>var_1ch<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>        eax <span style="color:#f92672">=</span> var_46h // <span style="color:#e6db74">&#34;cpaw{&#34;</span>
+</span></span><span style="display:flex;"><span>        dword <span style="color:#f92672">[</span>var_4h<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> eax
+</span></span><span style="display:flex;"><span>        dword <span style="color:#f92672">[</span>esp<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 0x8048620 // <span style="color:#f92672">[</span>0x8048620:4<span style="color:#f92672">]=</span>0x7325 // const char *format
+</span></span><span style="display:flex;"><span>        sym.imp.printf  <span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>        // int printf<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;%s&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        var <span style="color:#f92672">=</span> dword <span style="color:#f92672">[</span>var_1ch<span style="color:#f92672">]</span> - <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>  <span style="color:#f92672">(</span>!var<span style="color:#f92672">)</span> goto loc_0x804855e // likely
+</span></span><span style="display:flex;"><span>        ...
+</span></span></code></pre></div><p>解答：<strong>cpaw{yakiniku!}</strong></p>
 
       </div></div>
 

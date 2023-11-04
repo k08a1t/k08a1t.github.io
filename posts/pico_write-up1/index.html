@@ -156,25 +156,25 @@
 
   <div class="post-content"><div>
         <blockquote>
-<p>I wonder what this really is&hellip; <em><strong>enc</strong></em> &lsquo;'.join([chr((ord(flag[i]) &laquo; 8) + ord(flag[i + 1])) for i in range(0, len(flag), 2)]) <br>
+<p>I wonder what this really is&hellip; <em><strong>enc</strong></em> &lsquo;&rsquo;.join([chr((ord(flag[i]) &laquo; 8) + ord(flag[i + 1])) for i in range(0, len(flag), 2)]) <br>
 問題ファイル：enc <br>
 <br>
 <strong>hint1</strong>: You may find some decoders online</p>
 </blockquote>
 <p>実行権限を与えてfileコマンドで問題ファイルの形式を確認するとUnicode textだと分かる</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ file enc 
-enc: Unicode text, UTF-8 text, with no line terminators
-</code></pre></div><p>中身を見ると以下のような文字列が確認できるが、読むことができない</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat enc 
-灩捯䍔䙻ㄶ形楴獟楮獴㌴摟潦弸彥ㄴㅡて㝽
-</code></pre></div><p>問題文に暗号化に使っていると思われるコードが書かれているので、これを参考に復号プログラムを作成する</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">c<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;灩捯䍔䙻ㄶ形楴獟楮獴㌴摟潦弸彥ㄴㅡて㝽&#34;</span>
- 
-<span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> c:
-   i <span style="color:#f92672">=</span> ord(i)
-   print(chr(i <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>), end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>)
-   print(chr(i <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">255</span>), end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>)
-</code></pre></div><p>これを実行するとフラグを獲得できる</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ file enc 
+</span></span><span style="display:flex;"><span>enc: Unicode text, UTF-8 text, with no line terminators
+</span></span></code></pre></div><p>中身を見ると以下のような文字列が確認できるが、読むことができない</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat enc 
+</span></span><span style="display:flex;"><span>灩捯䍔䙻ㄶ形楴獟楮獴㌴摟潦弸彥ㄴㅡて㝽
+</span></span></code></pre></div><p>問題文に暗号化に使っていると思われるコードが書かれているので、これを参考に復号プログラムを作成する</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>c<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;灩捯䍔䙻ㄶ形楴獟楮獴㌴摟潦弸彥ㄴㅡて㝽&#34;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> c:
+</span></span><span style="display:flex;"><span>   i <span style="color:#f92672">=</span> ord(i)
+</span></span><span style="display:flex;"><span>   print(chr(i <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">8</span>), end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>   print(chr(i <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">255</span>), end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>)
+</span></span></code></pre></div><p>これを実行するとフラグを獲得できる</p>
 <p>解答：<strong>picoCTF{16_bits_inst34d_of_8_e141a0f7}</strong></p>
 
       </div></div>

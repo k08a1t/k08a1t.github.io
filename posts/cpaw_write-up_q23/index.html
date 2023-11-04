@@ -161,85 +161,84 @@
 問題ファイル：rev200</p>
 </blockquote>
 <p>実行権限を与えて、fileコマンドで実行ファイルの形式を確認するとELFであることが分かる</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ file rev200
-rev200: ELF 32-bit LSB executable, Intel 80386, version <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>SYSV<span style="color:#f92672">)</span>, dynamically linked, 
-interpreter /lib/ld-linux.so.2, <span style="color:#66d9ef">for</span> GNU/Linux 2.6.24, BuildID<span style="color:#f92672">[</span>sha1<span style="color:#f92672">]=</span>e87140105d6b5c8ea9b0193380ab3b79bfdcd85b, not stripped
-</code></pre></div><p>ghidraでデコンパイルするとmain関数のでコンパイル結果は以下のようになっている</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">undefined4 <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
- 
-{
-  <span style="color:#66d9ef">int</span> iVar1;
-  uint <span style="color:#f92672">*</span>puVar2;
-  <span style="color:#66d9ef">int</span> local_84;
-  uint local_7c [<span style="color:#ae81ff">14</span>];
-  uint local_44 [<span style="color:#ae81ff">14</span>];
-  
-  local_7c[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x7a</span>;
-  local_7c[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x69</span>;
-  local_7c[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x78</span>;
-  local_7c[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x6e</span>;
-  local_7c[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x62</span>;
-  local_7c[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x6f</span>;
-  local_7c[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x7c</span>;
-  local_7c[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x6b</span>;
-  local_7c[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x77</span>;
-  local_7c[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x78</span>;
-  local_7c[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x74</span>;
-  local_7c[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x38</span>;
-  local_7c[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x38</span>;
-  local_7c[<span style="color:#ae81ff">13</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
-  puVar2 <span style="color:#f92672">=</span> local_44;
-  <span style="color:#66d9ef">for</span> (iVar1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xe</span>; iVar1 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>; iVar1 <span style="color:#f92672">=</span> iVar1 <span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
-    <span style="color:#f92672">*</span>puVar2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    puVar2 <span style="color:#f92672">=</span> puVar2 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-  }
-  <span style="color:#66d9ef">for</span> (local_84 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; local_84 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0xe</span>; local_84 <span style="color:#f92672">=</span> local_84 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {
-    local_44[local_84] <span style="color:#f92672">=</span> local_7c[local_84] <span style="color:#f92672">^</span> <span style="color:#ae81ff">0x19</span>;
-  }
-  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-
-</code></pre></div><p>配列local_7cに格納された16進数と0x19の排他的論理和を配列local_44に格納していることが分かるので、
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ file rev200
+</span></span><span style="display:flex;"><span>rev200: ELF 32-bit LSB executable, Intel 80386, version <span style="color:#ae81ff">1</span> <span style="color:#f92672">(</span>SYSV<span style="color:#f92672">)</span>, dynamically linked, 
+</span></span><span style="display:flex;"><span>interpreter /lib/ld-linux.so.2, <span style="color:#66d9ef">for</span> GNU/Linux 2.6.24, BuildID<span style="color:#f92672">[</span>sha1<span style="color:#f92672">]=</span>e87140105d6b5c8ea9b0193380ab3b79bfdcd85b, not stripped
+</span></span></code></pre></div><p>ghidraでデコンパイルするとmain関数のでコンパイル結果は以下のようになっている</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>undefined4 <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> iVar1;
+</span></span><span style="display:flex;"><span>  uint <span style="color:#f92672">*</span>puVar2;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> local_84;
+</span></span><span style="display:flex;"><span>  uint local_7c [<span style="color:#ae81ff">14</span>];
+</span></span><span style="display:flex;"><span>  uint local_44 [<span style="color:#ae81ff">14</span>];
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  local_7c[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x7a</span>;
+</span></span><span style="display:flex;"><span>  local_7c[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x69</span>;
+</span></span><span style="display:flex;"><span>  local_7c[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x78</span>;
+</span></span><span style="display:flex;"><span>  local_7c[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x6e</span>;
+</span></span><span style="display:flex;"><span>  local_7c[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x62</span>;
+</span></span><span style="display:flex;"><span>  local_7c[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x6f</span>;
+</span></span><span style="display:flex;"><span>  local_7c[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x7c</span>;
+</span></span><span style="display:flex;"><span>  local_7c[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x6b</span>;
+</span></span><span style="display:flex;"><span>  local_7c[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x77</span>;
+</span></span><span style="display:flex;"><span>  local_7c[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x78</span>;
+</span></span><span style="display:flex;"><span>  local_7c[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x74</span>;
+</span></span><span style="display:flex;"><span>  local_7c[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x38</span>;
+</span></span><span style="display:flex;"><span>  local_7c[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x38</span>;
+</span></span><span style="display:flex;"><span>  local_7c[<span style="color:#ae81ff">13</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+</span></span><span style="display:flex;"><span>  puVar2 <span style="color:#f92672">=</span> local_44;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (iVar1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xe</span>; iVar1 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>; iVar1 <span style="color:#f92672">=</span> iVar1 <span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">*</span>puVar2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    puVar2 <span style="color:#f92672">=</span> puVar2 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (local_84 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; local_84 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0xe</span>; local_84 <span style="color:#f92672">=</span> local_84 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>    local_44[local_84] <span style="color:#f92672">=</span> local_7c[local_84] <span style="color:#f92672">^</span> <span style="color:#ae81ff">0x19</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>配列local_7cに格納された16進数と0x19の排他的論理和を配列local_44に格納していることが分かるので、
 これを出力するように書き換える</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
- 
-{
- <span style="color:#66d9ef">int</span> iVar1;
- <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>puVar2;
- <span style="color:#66d9ef">int</span> local_84;
- <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> local_7c [<span style="color:#ae81ff">14</span>];
- <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> local_44 [<span style="color:#ae81ff">14</span>];
-
- local_7c[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x7a</span>;
- local_7c[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x69</span>;
- local_7c[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x78</span>;
- local_7c[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x6e</span>;
- local_7c[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x62</span>;
- local_7c[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x6f</span>;
- local_7c[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x7c</span>;
- local_7c[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x6b</span>;
- local_7c[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x77</span>;
- local_7c[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x78</span>;
- local_7c[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x74</span>;
- local_7c[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x38</span>;
- local_7c[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x38</span>;
- local_7c[<span style="color:#ae81ff">13</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
- puVar2 <span style="color:#f92672">=</span> local_44;
- <span style="color:#66d9ef">for</span> (iVar1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xe</span>; iVar1 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>; iVar1 <span style="color:#f92672">=</span> iVar1 <span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
-   <span style="color:#f92672">*</span>puVar2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-   puVar2 <span style="color:#f92672">=</span> puVar2 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
- }
- <span style="color:#66d9ef">for</span> (local_84 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; local_84 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0xe</span>; local_84 <span style="color:#f92672">=</span> local_84 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {
-   local_44[local_84] <span style="color:#f92672">=</span> local_7c[local_84] <span style="color:#f92672">^</span> <span style="color:#ae81ff">0x19</span>;
- }
- 
- <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">14</span>;i<span style="color:#f92672">++</span>){
-   printf(<span style="color:#e6db74">&#34;%c&#34;</span>,local_44[i]);
- }
- <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><p>これをC言語でコンパイルし、実行するとフラグを出力できる</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">int</span> iVar1;
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span>puVar2;
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">int</span> local_84;
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> local_7c [<span style="color:#ae81ff">14</span>];
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> local_44 [<span style="color:#ae81ff">14</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> local_7c[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x7a</span>;
+</span></span><span style="display:flex;"><span> local_7c[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x69</span>;
+</span></span><span style="display:flex;"><span> local_7c[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x78</span>;
+</span></span><span style="display:flex;"><span> local_7c[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x6e</span>;
+</span></span><span style="display:flex;"><span> local_7c[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x62</span>;
+</span></span><span style="display:flex;"><span> local_7c[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x6f</span>;
+</span></span><span style="display:flex;"><span> local_7c[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x7c</span>;
+</span></span><span style="display:flex;"><span> local_7c[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x6b</span>;
+</span></span><span style="display:flex;"><span> local_7c[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x77</span>;
+</span></span><span style="display:flex;"><span> local_7c[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x78</span>;
+</span></span><span style="display:flex;"><span> local_7c[<span style="color:#ae81ff">10</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x74</span>;
+</span></span><span style="display:flex;"><span> local_7c[<span style="color:#ae81ff">11</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x38</span>;
+</span></span><span style="display:flex;"><span> local_7c[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x38</span>;
+</span></span><span style="display:flex;"><span> local_7c[<span style="color:#ae81ff">13</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+</span></span><span style="display:flex;"><span> puVar2 <span style="color:#f92672">=</span> local_44;
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">for</span> (iVar1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xe</span>; iVar1 <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>; iVar1 <span style="color:#f92672">=</span> iVar1 <span style="color:#f92672">+</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">*</span>puVar2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>   puVar2 <span style="color:#f92672">=</span> puVar2 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">for</span> (local_84 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; local_84 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0xe</span>; local_84 <span style="color:#f92672">=</span> local_84 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>   local_44[local_84] <span style="color:#f92672">=</span> local_7c[local_84] <span style="color:#f92672">^</span> <span style="color:#ae81ff">0x19</span>;
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">14</span>;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%c&#34;</span>,local_44[i]);
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>これをC言語でコンパイルし、実行するとフラグを出力できる</p>
 <p>解答：<strong>cpaw{vernam!!}</strong></p>
 
       </div></div>

@@ -160,47 +160,47 @@
 問題ファイル：crackme.py</p>
 </blockquote>
 <p>実行権限を与えて、とりあえず実行してみると入力する2数のうち正の数で最大のものを出力している</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ python3 crackme.py
-What´s your first number? <span style="color:#ae81ff">1</span>
-What´s your second number? <span style="color:#ae81ff">2</span>
-The number with largest positive magnitude is <span style="color:#ae81ff">2</span>
-</code></pre></div><p>ソースコードを見てみると、暗号文と復号し出力する関数が確認できるがこの関数は呼び出されていない</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Hiding this really important number in an obscure piece of code is brilliant!</span>
-<span style="color:#75715e"># AND it&#39;s encrypted!</span>
-<span style="color:#75715e"># We want our biggest client to know his information is safe with us.</span>
-bezos_cc_secret <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;A:4@r</span><span style="color:#e6db74">%u</span><span style="color:#e6db74">L`M-^M0c0AbcM-MFE067d3eh2bN&#34;</span>
- 
-<span style="color:#75715e"># Reference alphabet</span>
-alphabet <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;!</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">#$%&amp;&#39;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ&#34;</span><span style="color:#f92672">+</span> \
-           <span style="color:#e6db74">&#34;[</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">]^_`abcdefghijklmnopqrstuvwxyz{|}~&#34;</span>
- 
- 
- 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decode_secret</span>(secret):
-   <span style="color:#e6db74">&#34;&#34;&#34;ROT47 decode
-</span><span style="color:#e6db74"> 
-</span><span style="color:#e6db74">   NOTE: encode and decode are the same operation in the ROT cipher family.
-</span><span style="color:#e6db74">   &#34;&#34;&#34;</span>
- 
-   <span style="color:#75715e"># Encryption key</span>
-   rotate_const <span style="color:#f92672">=</span> <span style="color:#ae81ff">47</span>
- 
-   <span style="color:#75715e"># Storage for decoded secret</span>
-   decoded <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
- 
-   <span style="color:#75715e"># decode loop</span>
-   <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> secret:
-       index <span style="color:#f92672">=</span> alphabet<span style="color:#f92672">.</span>find(c)
-       original_index <span style="color:#f92672">=</span> (index <span style="color:#f92672">+</span> rotate_const) <span style="color:#f92672">%</span> len(alphabet)
-       decoded <span style="color:#f92672">=</span> decoded <span style="color:#f92672">+</span> alphabet[original_index]
- 
-   print(decoded)
- 
- 
- 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">choose_greatest</span>():
-<span style="color:#f92672">...</span>
-</code></pre></div><p>この関数を呼び出すように書き換えて実行するとフラグを獲得できる</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ python3 crackme.py
+</span></span><span style="display:flex;"><span>What´s your first number? <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>What´s your second number? <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>The number with largest positive magnitude is <span style="color:#ae81ff">2</span>
+</span></span></code></pre></div><p>ソースコードを見てみると、暗号文と復号し出力する関数が確認できるがこの関数は呼び出されていない</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Hiding this really important number in an obscure piece of code is brilliant!</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># AND it&#39;s encrypted!</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># We want our biggest client to know his information is safe with us.</span>
+</span></span><span style="display:flex;"><span>bezos_cc_secret <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;A:4@r</span><span style="color:#e6db74">%u</span><span style="color:#e6db74">L`M-^M0c0AbcM-MFE067d3eh2bN&#34;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reference alphabet</span>
+</span></span><span style="display:flex;"><span>alphabet <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;!</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">#$%&amp;&#39;()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ&#34;</span><span style="color:#f92672">+</span> \
+</span></span><span style="display:flex;"><span>           <span style="color:#e6db74">&#34;[</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">]^_`abcdefghijklmnopqrstuvwxyz{|}~&#34;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decode_secret</span>(secret):
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;&#34;&#34;ROT47 decode
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">   NOTE: encode and decode are the same operation in the ROT cipher family.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">   &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e"># Encryption key</span>
+</span></span><span style="display:flex;"><span>   rotate_const <span style="color:#f92672">=</span> <span style="color:#ae81ff">47</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e"># Storage for decoded secret</span>
+</span></span><span style="display:flex;"><span>   decoded <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e"># decode loop</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> secret:
+</span></span><span style="display:flex;"><span>       index <span style="color:#f92672">=</span> alphabet<span style="color:#f92672">.</span>find(c)
+</span></span><span style="display:flex;"><span>       original_index <span style="color:#f92672">=</span> (index <span style="color:#f92672">+</span> rotate_const) <span style="color:#f92672">%</span> len(alphabet)
+</span></span><span style="display:flex;"><span>       decoded <span style="color:#f92672">=</span> decoded <span style="color:#f92672">+</span> alphabet[original_index]
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>   print(decoded)
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">choose_greatest</span>():
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span></code></pre></div><p>この関数を呼び出すように書き換えて実行するとフラグを獲得できる</p>
 <p>解答：<strong>picoCTF{1|\/|_4_p34|\|ut_ef5b69a3}</strong></p>
 
       </div></div>
